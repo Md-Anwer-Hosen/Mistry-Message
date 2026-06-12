@@ -1,5 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 
+//type define
+
 export interface Message extends Document {
   content: string;
   createdAt: Date;
@@ -17,6 +19,8 @@ const MessageSchema: Schema<Message> = new Schema({
     default: Date.now,
   },
 });
+
+//type define
 
 export interface User extends Document {
   username: string;

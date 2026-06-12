@@ -11,7 +11,6 @@ declare module "next-auth" {
       isVerified?: boolean;
       isAcceptingMessage?: boolean;
     } & DefaultSession["user"];
-    // ⬆️ Default গুলো রেখে নতুন যোগ করছি
   }
 
   interface User {

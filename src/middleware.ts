@@ -11,11 +11,13 @@ export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   // logged in user sign-in page এ গেলে dashboard এ পাঠাও
+
   if (token && path.startsWith("/sign-in")) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   // logged out user dashboard এ গেলে sign-in এ পাঠাও
+
   if (!token && path.startsWith("/dashboard")) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
