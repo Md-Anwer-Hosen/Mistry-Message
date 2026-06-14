@@ -34,6 +34,7 @@ export async function POST(request: Request) {
     }
 
     //  Check if accepting messages
+
     if (!user.isAcceptingMessage) {
       return Response.json(
         {
