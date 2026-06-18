@@ -50,16 +50,11 @@ export default function VerificationEmail({
             </Section>
 
             <Text style={smallText}>
-              This OTP is valid for 10 minutes. Please do not share this code
-              with anyone.
+              This OTP is valid for 1 h. Please do not share this code with
+              anyone.
             </Text>
 
             {/* Button */}
-            <Section style={buttonContainer}>
-              <Button href="https://yourwebsite.com" style={button}>
-                Verify Account
-              </Button>
-            </Section>
           </Section>
 
           <Hr style={hr} />
