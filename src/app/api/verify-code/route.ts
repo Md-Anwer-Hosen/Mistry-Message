@@ -1,3 +1,5 @@
+//verify code api
+
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/user";
 

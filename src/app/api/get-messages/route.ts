@@ -30,7 +30,11 @@ export async function GET() {
         $match: { _id: userObjectId },
       },
       {
-        $unwind: "$messages",
+        // ✅ messages array খালি থাকলেও document রাখার জন্য preserveNullAndEmptyArrays
+        $unwind: {
+          path: "$messages",
+          preserveNullAndEmptyArrays: true,
+        },
       },
       {
         $sort: { "messages.createdAt": -1 },
@@ -38,7 +42,16 @@ export async function GET() {
       {
         $group: {
           _id: "$_id",
-          messages: { $push: "$messages" },
+          // ✅ null/undefined message push না করার জন্য
+          messages: {
+            $push: {
+              $cond: [
+                { $ifNull: ["$messages", false] },
+                "$messages",
+                "$$REMOVE",
+              ],
+            },
+          },
         },
       },
     ]);

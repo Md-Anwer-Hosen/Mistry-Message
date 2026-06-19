@@ -104,7 +104,7 @@ export async function GET() {
     return Response.json(
       {
         success: true,
-        isAcceptingMessage: user.isAcceptingMessage,
+        isAcceptingMessages: user.isAcceptingMessage, // ✅ plural — frontend এর সাথে match করানো হলো
       },
       { status: 200 },
     );

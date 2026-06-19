@@ -10,13 +10,11 @@ export async function middleware(request: NextRequest) {
 
   const path = request.nextUrl.pathname;
 
-  // logged in user sign-in page এ গেলে dashboard এ পাঠাও
+  const isAuthPath = path.startsWith("/sign-in") || path.startsWith("/sign-up");
 
-  if (token && path.startsWith("/sign-in")) {
+  if (token && isAuthPath) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
-
-  // logged out user dashboard এ গেলে sign-in এ পাঠাও
 
   if (!token && path.startsWith("/dashboard")) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
@@ -26,5 +24,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/sign-in"],
+  matcher: ["/", "/dashboard/:path*", "/sign-in", "/sign-up"],
 };

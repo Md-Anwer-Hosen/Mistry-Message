@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { messageid: string } },
+  { params }: { params: Promise<{ messageid: string }> }, // ✅ Promise type
 ) {
   await dbConnect();
 
@@ -19,9 +19,9 @@ export async function DELETE(
     );
   }
 
-  const messageId = params.messageid;
+  const { messageid } = await params; // ✅ await করে unwrap করা
+  const messageId = messageid;
 
-  // ✅ Valid MongoDB ObjectId কিনা check করুন
   if (!mongoose.Types.ObjectId.isValid(messageId)) {
     return Response.json(
       { success: false, message: "Invalid message ID" },
