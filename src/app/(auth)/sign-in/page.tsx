@@ -21,7 +21,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-// ✅ Sign-in schema
 const signInSchema = z.object({
   identifier: z.string().min(1, "Email or username is required"),
   password: z.string().min(1, "Password is required"),
@@ -43,11 +42,10 @@ const SignIn = () => {
       const result = await signIn("credentials", {
         identifier: data.identifier,
         password: data.password,
-        redirect: false, // ✅ redirect false — manually handle করব
+        redirect: false,
       });
 
       if (result?.error) {
-        // NextAuth এর error message গুলো
         if (result.error === "Please Verify Your Account") {
           toast.error("Please verify your account first");
         } else if (result.error === "User Does Not Exist") {
@@ -62,7 +60,7 @@ const SignIn = () => {
 
       if (result?.ok) {
         toast.success("Signed in successfully!");
-        router.replace("/dashboard"); // ✅ sign-in হলে dashboard এ যাবে
+        router.replace("/dashboard");
       }
     } catch (err) {
       toast.error("Something went wrong. Please try again.");
@@ -96,7 +94,11 @@ const SignIn = () => {
                 <FormItem>
                   <FormLabel>Email or Username</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter email or username" {...field} />
+                    <Input
+                      placeholder="Enter email or username"
+                      className="focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -111,7 +113,12 @@ const SignIn = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="••••••••" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="••••••••"
+                      className="focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -17,8 +17,8 @@ function Navbar() {
           href="/"
           className="flex items-center gap-3 group relative select-none"
         >
-          <div className="absolute -inset-1 rounded-full bg-[#C44536]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <span className="relative flex items-center justify-center w-8 h-8 rounded-xl border border-[#C44536]/40 bg-[#12100E] text-[#C44536] text-xs font-black transition-all duration-300 group-hover:border-[#C44536] group-hover:bg-[#C44536] group-hover:text-[#F2EBDD] group-hover:shadow-[0_0_15px_rgba(196,69,54,0.4)]">
+          <div className="absolute -inset-1 rounded-lg bg-[#C44536]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <span className="relative flex items-center justify-center w-8 h-8 rounded-lg border border-[#C44536]/40 bg-[#12100E] text-[#C44536] text-xs font-black transition-all duration-300 group-hover:border-[#C44536] group-hover:bg-[#C44536] group-hover:text-[#F2EBDD] group-hover:shadow-[0_0_15px_rgba(196,69,54,0.4)]">
             M
           </span>
           <span
@@ -66,7 +66,7 @@ function Navbar() {
             /* Log In Trigger */
             <Link
               href="/sign-in"
-              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-b from-[#F2EBDD] to-[#E6DEC9] px-5 py-2 text-sm font-semibold text-[#12100E] shadow-md transition-all duration-300 hover:brightness-110 active:scale-[0.97] hover:shadow-[0_0_20px_rgba(242,235,221,0.15)]"
+              className="inline-flex items-center justify-center rounded-sm bg-gradient-to-b from-[#F2EBDD] to-[#E6DEC9] px-5 py-2 text-sm font-semibold text-[#12100E] shadow-md transition-all duration-300 hover:brightness-110 active:scale-[0.97] hover:shadow-[0_0_20px_rgba(242,235,221,0.15)]"
             >
               <LogIn className="h-4 w-4 mr-2 stroke-[2.25]" />
               Sign in
@@ -93,7 +93,7 @@ function Navbar() {
         <div className="sm:hidden border-t border-[#26221D]/60 bg-[#12100E] px-5 py-6 space-y-5 animate-in fade-in slide-in-from-top-4 duration-300 content-none">
           {session ? (
             <>
-              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#26221D]/30 border border-[#3A352D]/20">
+              <div className="flex items-center gap-3 p-3.5 rounded-sm bg-[#26221D]/30 border border-[#3A352D]/20">
                 <div className="h-8 w-8 rounded-sm bg-[#C44536]/10 flex items-center justify-center border border-[#C44536]/20">
                   <ShieldCheck className="h-4 w-4 text-[#C44536]" />
                 </div>

@@ -27,11 +27,11 @@ import {
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [usernameMessage, setUsernameMessage] = useState("");
-  const [isUsernameValid, setIsUsernameValid] = useState(false); // ✅ success/error track করতে
+  const [isUsernameValid, setIsUsernameValid] = useState(false);
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [debouncedUsername] = useDebounce(username, 500); // ✅ 300 থেকে 500ms — কম API call
+  const [debouncedUsername] = useDebounce(username, 500);
 
   const router = useRouter();
 
@@ -43,7 +43,6 @@ const SignUp = () => {
   useEffect(() => {
     const checkUsernameUnique = async () => {
       if (debouncedUsername.length < 3) {
-        // ✅ 3 character এর কম হলে check করব না
         setUsernameMessage("");
         return;
       }
@@ -56,7 +55,6 @@ const SignUp = () => {
         const response = await axios.get<ApiResponse>(
           `/api/check-username-unique?username=${debouncedUsername}`,
         );
-        // ✅ API response এর success field দিয়ে valid/invalid বুঝব
         setIsUsernameValid(response.data.success);
         setUsernameMessage(response.data.message);
       } catch (err) {
@@ -78,7 +76,7 @@ const SignUp = () => {
     try {
       const response = await axios.post<ApiResponse>(`/api/sign-up`, data);
       toast.success(response.data.message);
-      router.replace(`/verify/${data.username}`); // ✅ uncomment করা হয়েছে
+      router.replace(`/verify/${data.username}`);
     } catch (err) {
       const axiosError = err as AxiosError<ApiResponse>;
       toast.error(
@@ -116,6 +114,7 @@ const SignUp = () => {
                   <FormControl>
                     <Input
                       placeholder="Enter username"
+                      className="focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
                       {...field}
                       onChange={(e) => {
                         field.onChange(e);
@@ -124,7 +123,6 @@ const SignUp = () => {
                     />
                   </FormControl>
 
-                  {/* ✅ success field দিয়ে color ঠিক করা হয়েছে */}
                   {isCheckingUsername ? (
                     <p className="text-xs text-muted-foreground flex items-center gap-1">
                       <Loader2 className="h-3 w-3 animate-spin" />
@@ -156,6 +154,7 @@ const SignUp = () => {
                     <Input
                       type="email"
                       placeholder="you@example.com"
+                      className="focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
                       {...field}
                     />
                   </FormControl>
@@ -172,7 +171,12 @@ const SignUp = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="••••••••" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="••••••••"
+                      className="focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
